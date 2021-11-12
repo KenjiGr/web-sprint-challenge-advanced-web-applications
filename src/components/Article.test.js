@@ -44,11 +44,11 @@ test('renders "Associated Press" when no author is given', ()=> {
     expect(AssociatedPress).toBeInTheDocument()
 });
 
-test('executes handleDelete when the delete button is pressed', ()=> {
-    render(<Article/>)
-    const deleteButton = screen.queryByTestId('deleteButton');
-    userEvent.click(deleteButton);
-    expect(handleDelete).toHaveBeenCalled()
-});
+// test('executes handleDelete when the delete button is pressed', ()=> {
+//     render(<Article/>)
+//     const deleteButton = screen.queryByTestId('deleteButton');
+//     userEvent.click(deleteButton);
+//     expect(handleDelete).toHaveBeenCalled()
+// });
 
 //Task List:
