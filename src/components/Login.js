@@ -16,7 +16,6 @@ const Login = () => {
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('username', res.data.username);
             push('/view');
-            window.location.reload()
           }).catch(err => {
             setError(`a server provided error message can be found in ${err.response.data}`);
             console.error('error ',err);
