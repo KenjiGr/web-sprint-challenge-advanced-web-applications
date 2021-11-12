@@ -18,7 +18,7 @@ const Login = () => {
             push('/view');
           }).catch(err => {
             setError(`a server provided error message can be found in ${err.response.data}`);
-            console.error('error ',err);
+            // console.error('error ',err);
           })
     }
     const handleChange = e => {
