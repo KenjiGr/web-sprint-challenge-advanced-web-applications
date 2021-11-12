@@ -25,9 +25,9 @@ const App = () => {
         {isLoggedIn && <PrivateRoute path='/view'>
           <View/>
         </PrivateRoute>} 
-        <Route path='/logout'>
+        {isLoggedIn && <PrivateRoute path='/logout'>
           <Logout/>
-        </Route> 
+        </PrivateRoute>} 
       </RouteContainer>
     </AppContainer>
   )

@@ -1,13 +1,57 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router';
+import axios from 'axios';
 
 const Login = () => {
-    
+    const {push} = useHistory();
+    const [credentials, setCredentials] = useState({
+        username: '',
+        password: ''
+    })
+    const [error, setError] = useState('')
+    const login = e => {
+        e.preventDefault();
+        axios.post('http://localhost:5000/api/login', credentials).then(res => {
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('username', res.data.username);
+            push('/view')
+          }).catch(err => {
+            setError(`a server provided error message can be found in ${err.response.data}`);
+            console.error('error ',err);
+          })
+    }
+    const handleChange = e => {
+        setCredentials({
+            ...credentials,
+            [e.target.name]: e.target.value
+        })
+    }
     return(<ComponentContainer>
         <ModalContainer>
             <h1>Welcome to Blogger Pro</h1>
             <h2>Please enter your account information.</h2>
         </ModalContainer>
+        <div>
+        <form onSubmit={login}>
+          <input
+            id='username'
+            type="text"
+            name="username"
+            value={credentials.username}
+            onChange={handleChange}
+          />
+          <input
+            id='password'
+            type="password"
+            name="password"
+            value={credentials.password}
+            onChange={handleChange}
+          />
+          <button id='submit'>Log in</button>
+        </form>
+      </div>
+      <p id='error'>{error}</p>
     </ComponentContainer>);
 }
 
