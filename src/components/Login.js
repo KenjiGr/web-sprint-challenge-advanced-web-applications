@@ -15,7 +15,8 @@ const Login = () => {
         axios.post('http://localhost:5000/api/login', credentials).then(res => {
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('username', res.data.username);
-            push('/view')
+            push('/view');
+            window.location.reload()
           }).catch(err => {
             setError(`a server provided error message can be found in ${err.response.data}`);
             console.error('error ',err);
